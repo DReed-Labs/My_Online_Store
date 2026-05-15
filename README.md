@@ -25,7 +25,8 @@ Then open <http://localhost:3000>.
 
 ```
 .
-├── server.js                 # Express app + routes
+├── app.js                    # Express app: middleware, routes, exports app
+├── server.js                 # Starts the HTTP listener (requires app.js)
 ├── data/products.json        # Product catalog (edit to add/remove tees)
 ├── views/                    # EJS templates
 │   ├── partials/             # head, header, footer, product-card
