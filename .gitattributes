@@ -1,0 +1,18 @@
+# Treat these as binary so Windows line-ending conversion doesn't corrupt them.
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+
+# Force LF in source files to keep diffs clean across platforms.
+*.js   text eol=lf
+*.css  text eol=lf
+*.html text eol=lf
+*.ejs  text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+*.svg  text eol=lf
