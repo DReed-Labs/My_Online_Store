@@ -39,5 +39,8 @@
     msg.style.color = 'var(--color-ink)';
     clearTimeout(msgTimer);
     msgTimer = setTimeout(() => { msg.textContent = ''; }, 4000);
+
+    // Open the mini-cart so the user sees what they just added.
+    if (window.JRsMiniCart) window.JRsMiniCart.open();
   });
 })();
