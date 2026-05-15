@@ -1,0 +1,38 @@
+<%- include('partials/head', { ogType: 'website' }) %>
+<%- include('partials/header') %>
+
+<section class="hero">
+  <div class="wrap hero__inner">
+    <p class="hero__eyebrow">Drop 04 · Out Now</p>
+    <h1 class="hero__title">Loud Tees.<br><span class="hero__title-accent">Small Batches.</span></h1>
+    <p class="hero__lede">Hand screen-printed in our shop. Sold until they're gone — no restocks, no apologies.</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="/shop">Shop the drop</a>
+      <a class="btn btn--ghost" href="#featured">See featured</a>
+    </div>
+  </div>
+</section>
+
+<section class="featured" id="featured" aria-labelledby="featured-title">
+  <div class="wrap">
+    <header class="section-head">
+      <h2 id="featured-title" class="section-head__title">Featured</h2>
+      <a href="/shop" class="section-head__link">All tees &rarr;</a>
+    </header>
+    <div class="product-grid">
+      <% featured.forEach(product => { %>
+        <%- include('partials/product-card', { product }) %>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="value-strip">
+  <div class="wrap value-strip__inner">
+    <div><strong>Heavyweight cotton</strong><span>240gsm minimum on every tee.</span></div>
+    <div><strong>Printed by hand</strong><span>Screen-printed in small runs, in-shop.</span></div>
+    <div><strong>Limited drops</strong><span>When it's gone, it's gone.</span></div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

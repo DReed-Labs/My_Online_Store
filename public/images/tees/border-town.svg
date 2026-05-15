@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Border Town tee in sand">
+  <rect width="600" height="600" fill="#f3f1ec"/>
+  <g stroke="#0a0a0a" stroke-width="3" stroke-linejoin="round">
+    <path d="M150 130 L240 90 L300 130 L360 90 L450 130 L500 200 L450 235 L425 215 L425 510 L175 510 L175 215 L150 235 L100 200 Z" fill="#d6c4a3"/>
+  </g>
+  <g transform="translate(300 320)" text-anchor="middle" font-family="Impact, 'Anton', 'Archivo Black', system-ui, sans-serif" fill="#0a0a0a">
+    
+    <g stroke="#0a0a0a" stroke-width="3" fill="none">
+      <polyline points="-100,40 -80,40 -80,-10 -60,-10 -60,30 -40,30 -40,-30 -10,-30 -10,40 20,40 20,-20 50,-20 50,40 80,40 80,0 100,0 100,40"/>
+    </g>
+    <text y="80" font-size="22" font-weight="700" letter-spacing="6" fill="#0a0a0a">BORDER TOWN</text>
+  </g>
+</svg>

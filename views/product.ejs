@@ -1,0 +1,94 @@
+<%
+  const jsonLd = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": product.name,
+    "image": [site.url + product.image],
+    "description": product.description,
+    "sku": product.id,
+    "category": product.category,
+    "brand": { "@type": "Brand", "name": site.name },
+    "offers": {
+      "@type": "Offer",
+      "url": site.url + "/product/" + product.id,
+      "priceCurrency": "USD",
+      "price": product.price.toFixed(2),
+      "availability": product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+    }
+  };
+%>
+<%- include('partials/head', { ogType: 'product', ogImage: product.image, jsonLd, pageScript: '/js/product.js' }) %>
+<%- include('partials/header') %>
+
+<article class="product-detail">
+  <div class="wrap product-detail__layout">
+    <div class="product-detail__media">
+      <img src="<%= product.image %>" alt="<%= product.name %> tee" width="600" height="600">
+    </div>
+
+    <div class="product-detail__info">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/shop">Shop</a> <span aria-hidden="true">/</span>
+        <a href="/shop#cat=<%= product.category %>"><%= product.category %></a> <span aria-hidden="true">/</span>
+        <span><%= product.name %></span>
+      </nav>
+
+      <h1 class="product-detail__name"><%= product.name %></h1>
+      <p class="product-detail__price">$<%= product.price %></p>
+      <p class="product-detail__desc"><%= product.description %></p>
+
+      <form id="add-to-cart-form" class="add-form"
+            data-product-id="<%= product.id %>"
+            data-product-name="<%= product.name %>"
+            data-product-price="<%= product.price %>"
+            data-product-image="<%= product.image %>">
+
+        <fieldset class="add-form__group">
+          <legend>Color</legend>
+          <% product.colors.forEach((c, i) => { %>
+            <label class="chip">
+              <input type="radio" name="color" value="<%= c %>" <%= i === 0 ? 'checked' : '' %>>
+              <%= c %>
+            </label>
+          <% }) %>
+        </fieldset>
+
+        <fieldset class="add-form__group">
+          <legend>Size</legend>
+          <% product.sizes.forEach((s, i) => { %>
+            <label class="chip">
+              <input type="radio" name="size" value="<%= s %>" <%= i === 0 ? 'checked' : '' %> required>
+              <%= s %>
+            </label>
+          <% }) %>
+        </fieldset>
+
+        <div class="add-form__row">
+          <label for="qty" class="visually-hidden">Quantity</label>
+          <div class="qty">
+            <button type="button" class="qty__btn" data-qty-step="-1" aria-label="Decrease quantity">−</button>
+            <input type="number" id="qty" name="qty" value="1" min="1" max="10" inputmode="numeric">
+            <button type="button" class="qty__btn" data-qty-step="1" aria-label="Increase quantity">+</button>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Add to cart</button>
+        </div>
+        <p class="add-form__msg" id="add-msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <% if (related.length) { %>
+  <section class="related" aria-labelledby="related-title">
+    <div class="wrap">
+      <h2 id="related-title" class="section-head__title">More <%= product.category %></h2>
+      <div class="product-grid">
+        <% related.forEach(product => { %>
+          <%- include('partials/product-card', { product }) %>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+  <% } %>
+</article>
+
+<%- include('partials/footer') %>

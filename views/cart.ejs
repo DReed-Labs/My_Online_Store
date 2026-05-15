@@ -1,0 +1,36 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="page-head">
+  <div class="wrap">
+    <h1 class="page-head__title">Your Cart</h1>
+    <p class="page-head__lede">Review your tees, then head to checkout.</p>
+  </div>
+</section>
+
+<section class="cart-page">
+  <div class="wrap cart-page__layout">
+    <div class="cart-page__items">
+      <ul id="cart-items" class="cart-items" aria-live="polite"></ul>
+      <p id="cart-empty" class="cart-empty" hidden>
+        Your cart is empty. <a href="/shop" class="link">Browse the shop &rarr;</a>
+      </p>
+    </div>
+
+    <aside class="cart-page__summary" aria-label="Order summary">
+      <div class="summary">
+        <h2 class="summary__title">Summary</h2>
+        <dl class="summary__rows">
+          <div><dt>Subtotal</dt><dd>$<span data-summary="subtotal">0.00</span></dd></div>
+          <div><dt>Shipping</dt><dd>Calculated at checkout</dd></div>
+          <div class="summary__total"><dt>Total</dt><dd>$<span data-summary="total">0.00</span></dd></div>
+        </dl>
+        <button type="button" class="btn btn--primary btn--block" id="checkout-btn" disabled>Checkout (coming soon)</button>
+        <a href="/shop" class="btn btn--ghost btn--block">Keep shopping</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<script src="/js/cart-page.js" defer></script>
+<%- include('partials/footer') %>

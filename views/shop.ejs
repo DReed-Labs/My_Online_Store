@@ -1,0 +1,55 @@
+<%- include('partials/head', { pageScript: '/js/shop.js' }) %>
+<%- include('partials/header') %>
+
+<section class="page-head">
+  <div class="wrap">
+    <h1 class="page-head__title">Shop All Tees</h1>
+    <p class="page-head__lede"><%= products.length %> tees · filter, sort, search — your move.</p>
+  </div>
+</section>
+
+<section class="shop">
+  <div class="wrap shop__layout">
+    <aside class="shop__filters" aria-label="Filter and sort">
+      <form class="filters" id="filters">
+        <div class="filters__group">
+          <label class="filters__label" for="search">Search</label>
+          <input type="search" id="search" name="search" placeholder="Name, tag…" autocomplete="off">
+        </div>
+
+        <fieldset class="filters__group">
+          <legend class="filters__label">Category</legend>
+          <label class="chip"><input type="radio" name="category" value="all" checked> All</label>
+          <% categories.forEach(c => { %>
+            <label class="chip"><input type="radio" name="category" value="<%= c %>"> <%= c %></label>
+          <% }) %>
+        </fieldset>
+
+        <div class="filters__group">
+          <label class="filters__label" for="sort">Sort</label>
+          <select id="sort" name="sort">
+            <option value="featured">Featured</option>
+            <option value="newest">Newest</option>
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+            <option value="name">Name A–Z</option>
+          </select>
+        </div>
+
+        <button type="reset" class="btn btn--ghost btn--sm">Clear</button>
+      </form>
+    </aside>
+
+    <div class="shop__results">
+      <p class="shop__count" data-result-count><%= products.length %> tees</p>
+      <div class="product-grid" id="product-grid">
+        <% products.forEach(product => { %>
+          <%- include('partials/product-card', { product }) %>
+        <% }) %>
+      </div>
+      <p class="shop__empty" id="shop-empty" hidden>No tees match those filters. <button type="button" class="link" id="shop-empty-reset">Clear filters</button></p>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

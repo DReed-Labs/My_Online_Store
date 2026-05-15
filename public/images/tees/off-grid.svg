@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Off Grid tee in forest">
+  <rect width="600" height="600" fill="#f3f1ec"/>
+  <g stroke="#f5f5f5" stroke-width="3" stroke-linejoin="round">
+    <path d="M150 130 L240 90 L300 130 L360 90 L450 130 L500 200 L450 235 L425 215 L425 510 L175 510 L175 215 L150 235 L100 200 Z" fill="#1f3a2f"/>
+  </g>
+  <g transform="translate(300 320)" text-anchor="middle" font-family="Impact, 'Anton', 'Archivo Black', system-ui, sans-serif" fill="#f5f5f5">
+    
+    <g stroke="#f5f5f5" stroke-width="2" fill="none" opacity="0.8">
+      <ellipse cx="0" cy="0" rx="20" ry="11"/><ellipse cx="0" cy="0" rx="40" ry="22"/><ellipse cx="0" cy="0" rx="60" ry="33"/><ellipse cx="0" cy="0" rx="80" ry="44"/><ellipse cx="0" cy="0" rx="100" ry="55.00000000000001"/>
+    </g>
+    <text y="115" font-size="22" font-weight="700" letter-spacing="6" fill="#f5f5f5">OFF GRID</text>
+  </g>
+</svg>

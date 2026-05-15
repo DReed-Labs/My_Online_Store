@@ -1,0 +1,120 @@
+/* ============================================================
+   base.css — design tokens, reset, layout primitives
+   Mobile-first. All breakpoints use min-width queries.
+   ============================================================ */
+
+:root {
+  /* Color */
+  --color-bg: #ffffff;
+  --color-surface: #f3f1ec;
+  --color-ink: #0a0a0a;
+  --color-ink-soft: #555;
+  --color-line: #0a0a0a;
+  --color-accent: #ff3b30;      /* hot red */
+  --color-accent-ink: #ffffff;
+  --color-warn: #e6ff00;        /* acid yellow used sparingly */
+  --color-muted: #ebe9e3;
+
+  /* Typography */
+  --font-display: "Archivo Black", Impact, "Anton", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --fs-100: 0.75rem;
+  --fs-200: 0.875rem;
+  --fs-300: 1rem;
+  --fs-400: 1.125rem;
+  --fs-500: 1.5rem;
+  --fs-600: 2rem;
+  --fs-700: 2.75rem;
+  --fs-800: 4rem;
+
+  /* Spacing scale (4px-based) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Layout */
+  --wrap-max: 1200px;
+  --wrap-pad: 1rem;
+
+  /* Misc */
+  --border: 2px solid var(--color-line);
+  --border-thin: 1px solid var(--color-line);
+  --radius: 0;
+  --transition: 160ms ease;
+  --shadow-pop: 6px 6px 0 var(--color-ink);
+}
+
+@media (min-width: 640px) {
+  :root { --wrap-pad: 1.5rem; --fs-700: 3.25rem; --fs-800: 5rem; }
+}
+@media (min-width: 960px) {
+  :root { --wrap-pad: 2rem; --fs-700: 4rem; --fs-800: 6.5rem; }
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-300);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg, video { display: block; max-width: 100%; height: auto; }
+button { font: inherit; cursor: pointer; }
+input, select, textarea { font: inherit; }
+a { color: inherit; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400; /* Archivo Black is already heavy */
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-transform: uppercase;
+}
+p { margin: 0; }
+
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+/* ---- A11y helpers ---- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--color-ink); color: var(--color-bg);
+  padding: var(--space-3) var(--space-4); z-index: 9999;
+  text-decoration: none; font-weight: 700;
+}
+.skip-link:focus { left: 0; }
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---- Layout ---- */
+.wrap {
+  width: 100%;
+  max-width: var(--wrap-max);
+  margin: 0 auto;
+  padding: 0 var(--wrap-pad);
+}
+.text-center { text-align: center; }
+
+/* ---- Site frame ---- */
+main#main { min-height: 60vh; }

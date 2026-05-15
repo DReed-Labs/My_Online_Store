@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Midnight Grid tee in navy">
+  <rect width="600" height="600" fill="#f3f1ec"/>
+  <g stroke="#f5f5f5" stroke-width="3" stroke-linejoin="round">
+    <path d="M150 130 L240 90 L300 130 L360 90 L450 130 L500 200 L450 235 L425 215 L425 510 L175 510 L175 215 L150 235 L100 200 Z" fill="#0e1a35"/>
+  </g>
+  <g transform="translate(300 320)" text-anchor="middle" font-family="Impact, 'Anton', 'Archivo Black', system-ui, sans-serif" fill="#f5f5f5">
+    
+    <g stroke="#f5f5f5" stroke-width="2" fill="none" opacity="0.7">
+      <line x1="-100" y1="-60" x2="100" y2="-60"/><line x1="-100" y1="-36" x2="100" y2="-36"/><line x1="-100" y1="-12" x2="100" y2="-12"/><line x1="-100" y1="12" x2="100" y2="12"/><line x1="-100" y1="36" x2="100" y2="36"/><line x1="-100" y1="60" x2="100" y2="60"/>
+      <line x1="-100" y1="-60" x2="-100" y2="60"/><line x1="-75" y1="-60" x2="-75" y2="60"/><line x1="-50" y1="-60" x2="-50" y2="60"/><line x1="-25" y1="-60" x2="-25" y2="60"/><line x1="0" y1="-60" x2="0" y2="60"/><line x1="25" y1="-60" x2="25" y2="60"/><line x1="50" y1="-60" x2="50" y2="60"/><line x1="75" y1="-60" x2="75" y2="60"/><line x1="100" y1="-60" x2="100" y2="60"/>
+    </g>
+  </g>
+</svg>

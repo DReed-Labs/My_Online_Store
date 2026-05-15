@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Low Frequency tee in black">
+  <rect width="600" height="600" fill="#f3f1ec"/>
+  <g stroke="#f5f5f5" stroke-width="3" stroke-linejoin="round">
+    <path d="M150 130 L240 90 L300 130 L360 90 L450 130 L500 200 L450 235 L425 215 L425 510 L175 510 L175 215 L150 235 L100 200 Z" fill="#0a0a0a"/>
+  </g>
+  <g transform="translate(300 320)" text-anchor="middle" font-family="Impact, 'Anton', 'Archivo Black', system-ui, sans-serif" fill="#f5f5f5">
+    
+    <g stroke="#ff3b30" stroke-width="4" fill="none">
+      <polyline points="-110,0 -90,-30 -70,30 -50,-60 -30,60 -10,-40 10,40 30,-50 50,50 70,-30 90,30 110,0"/>
+    </g>
+    <text y="70" font-size="22" font-weight="900" letter-spacing="6" fill="#f5f5f5">LOW FREQUENCY</text>
+  </g>
+</svg>

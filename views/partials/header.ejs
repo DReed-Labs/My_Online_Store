@@ -1,0 +1,21 @@
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="/" aria-label="<%= site.name %> home">
+      <span class="brand__mark">JR</span><span class="brand__name">'s Thread Shop</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+      <a href="/" class="<%= currentPath === '/' ? 'is-active' : '' %>">Home</a>
+      <a href="/shop" class="<%= currentPath.startsWith('/shop') || currentPath.startsWith('/product') ? 'is-active' : '' %>">Shop</a>
+      <a href="/cart" class="nav-cart <%= currentPath === '/cart' ? 'is-active' : '' %>">
+        Cart <span class="cart-badge" data-cart-count aria-label="items in cart">0</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">

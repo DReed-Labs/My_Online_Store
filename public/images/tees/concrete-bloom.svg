@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Concrete Bloom tee in grey">
+  <rect width="600" height="600" fill="#f3f1ec"/>
+  <g stroke="#0a0a0a" stroke-width="3" stroke-linejoin="round">
+    <path d="M150 130 L240 90 L300 130 L360 90 L450 130 L500 200 L450 235 L425 215 L425 510 L175 510 L175 215 L150 235 L100 200 Z" fill="#9aa0a6"/>
+  </g>
+  <g transform="translate(300 320)" text-anchor="middle" font-family="Impact, 'Anton', 'Archivo Black', system-ui, sans-serif" fill="#0a0a0a">
+    
+    <g fill="#ff3b30" opacity="0.85">
+      <circle cx="60" cy="0" r="34"/><circle cx="30.000000000000007" cy="51.96152422706631" r="34"/><circle cx="-29.999999999999986" cy="51.96152422706632" r="34"/><circle cx="-60" cy="7.34788079488412e-15" r="34"/><circle cx="-30.00000000000003" cy="-51.961524227066306" r="34"/><circle cx="30.000000000000007" cy="-51.96152422706631" r="34"/>
+      <circle cx="0" cy="0" r="34" fill="#0a0a0a"/>
+    </g>
+  </g>
+</svg>

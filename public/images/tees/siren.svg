@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Siren tee in red">
+  <rect width="600" height="600" fill="#f3f1ec"/>
+  <g stroke="#f5f5f5" stroke-width="3" stroke-linejoin="round">
+    <path d="M150 130 L240 90 L300 130 L360 90 L450 130 L500 200 L450 235 L425 215 L425 510 L175 510 L175 215 L150 235 L100 200 Z" fill="#c8202b"/>
+  </g>
+  <g transform="translate(300 320)" text-anchor="middle" font-family="Impact, 'Anton', 'Archivo Black', system-ui, sans-serif" fill="#f5f5f5">
+    
+    <line x1="-110" y1="60" x2="110" y2="-60" stroke="#f5f5f5" stroke-width="18"/>
+    <text y="92" font-size="34" font-weight="900" letter-spacing="10" fill="#f5f5f5">SIREN</text>
+  </g>
+</svg>

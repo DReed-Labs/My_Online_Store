@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Rebel Static tee in black">
+  <rect width="600" height="600" fill="#f3f1ec"/>
+  <g stroke="#f5f5f5" stroke-width="3" stroke-linejoin="round">
+    <path d="M150 130 L240 90 L300 130 L360 90 L450 130 L500 200 L450 235 L425 215 L425 510 L175 510 L175 215 L150 235 L100 200 Z" fill="#0a0a0a"/>
+  </g>
+  <g transform="translate(300 320)" text-anchor="middle" font-family="Impact, 'Anton', 'Archivo Black', system-ui, sans-serif" fill="#f5f5f5">
+    
+    <g font-size="74" font-weight="900" letter-spacing="-2">
+      <text y="-6" fill="#ff3b30">REBEL</text>
+      <text y="62" fill="#f5f5f5">STATIC</text>
+    </g>
+    <g stroke="#f5f5f5" stroke-width="2" opacity="0.5">
+      <line x1="-110" y1="90" x2="110" y2="90"/><line x1="-110" y1="98" x2="110" y2="98"/><line x1="-110" y1="106" x2="110" y2="106"/><line x1="-110" y1="114" x2="110" y2="114"/><line x1="-110" y1="122" x2="110" y2="122"/><line x1="-110" y1="130" x2="110" y2="130"/><line x1="-110" y1="138" x2="110" y2="138"/>
+    </g>
+  </g>
+</svg>
