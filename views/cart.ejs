@@ -11,8 +11,33 @@
 <section class="cart-page">
   <div class="wrap cart-page__layout">
     <div class="cart-page__items">
-      <ul id="cart-items" class="cart-items" aria-live="polite"></ul>
-      <p id="cart-empty" class="cart-empty" hidden>
+      <ul id="cart-items" class="cart-items" aria-live="polite" <%= initialCart.items.length === 0 ? 'hidden' : '' %>>
+        <% initialCart.items.forEach(line => { %>
+          <li class="cart-line" data-id="<%= line.id %>">
+            <a class="cart-line__media" href="/product/<%= encodeURIComponent(line.productId) %>">
+              <img src="<%= line.image %>" alt="<%= line.name %>" width="96" height="96">
+            </a>
+            <div class="cart-line__body">
+              <div class="cart-line__head">
+                <div>
+                  <h3 class="cart-line__name"><a href="/product/<%= encodeURIComponent(line.productId) %>" style="text-decoration:none;color:inherit"><%= line.name %></a></h3>
+                  <p class="cart-line__meta"><%= line.color %> &middot; Size <%= line.size %></p>
+                </div>
+                <p class="cart-line__price" data-line-price>$<%= (line.price * line.qty).toFixed(2) %></p>
+              </div>
+              <div class="cart-line__actions">
+                <div class="qty">
+                  <button type="button" class="qty__btn" data-act="dec" aria-label="Decrease quantity">&minus;</button>
+                  <input type="number" value="<%= line.qty %>" min="1" max="10" inputmode="numeric" aria-label="Quantity">
+                  <button type="button" class="qty__btn" data-act="inc" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="button" class="cart-line__remove" data-act="remove">Remove</button>
+              </div>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+      <p id="cart-empty" class="cart-empty" <%= initialCart.items.length > 0 ? 'hidden' : '' %>>
         Your cart is empty. <a href="/shop" class="link">Browse the shop &rarr;</a>
       </p>
     </div>
@@ -21,11 +46,12 @@
       <div class="summary">
         <h2 class="summary__title">Summary</h2>
         <dl class="summary__rows">
-          <div><dt>Subtotal</dt><dd>$<span data-summary="subtotal">0.00</span></dd></div>
+          <div><dt>Subtotal</dt><dd>$<span data-summary="subtotal"><%= initialCart.subtotal.toFixed(2) %></span></dd></div>
           <div><dt>Shipping</dt><dd>Calculated at checkout</dd></div>
-          <div class="summary__total"><dt>Total</dt><dd>$<span data-summary="total">0.00</span></dd></div>
+          <div class="summary__total"><dt>Total</dt><dd>$<span data-summary="total"><%= initialCart.subtotal.toFixed(2) %></span></dd></div>
         </dl>
-        <button type="button" class="btn btn--primary btn--block" id="checkout-btn" disabled>Checkout (coming soon)</button>
+        <button type="button" class="btn btn--primary btn--block" id="checkout-btn" <%= initialCart.items.length === 0 ? 'disabled' : '' %>>Checkout</button>
+        <p class="add-form__msg" id="checkout-msg" role="status" aria-live="polite"></p>
         <a href="/shop" class="btn btn--ghost btn--block">Keep shopping</a>
       </div>
     </aside>

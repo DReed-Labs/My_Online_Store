@@ -35,6 +35,10 @@
   </div>
 </aside>
 
+<script>
+// Server-rendered cart snapshot so the mini-cart opens populated without a round-trip.
+window.__INITIAL_CART__ = <%- JSON.stringify({ count: cartCount, subtotal: cartSubtotal }) %>;
+</script>
 <script src="/js/cart.js" defer></script>
 <script src="/js/mini-cart.js" defer></script>
 <% if (typeof pageScript !== 'undefined') { %><script src="<%= pageScript %>" defer></script><% } %>

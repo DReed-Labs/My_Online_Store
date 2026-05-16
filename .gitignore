@@ -23,3 +23,11 @@ Thumbs.db
 dist/
 build/
 .cache/
+
+# SQLite database files (per-environment state)
+data/*.db
+data/*.db-wal
+data/*.db-shm
+
+# Test/debug artifacts
+cookies.txt

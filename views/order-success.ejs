@@ -1,0 +1,51 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="page-head">
+  <div class="wrap text-center">
+    <p class="hero__eyebrow">Paid</p>
+    <h1 class="page-head__title">Thanks &mdash; you're set.</h1>
+    <p class="page-head__lede">
+      Order <code><%= order.id %></code> is confirmed. We screen-print in small batches,
+      so we'll have an update on shipping in 3&ndash;5 business days.
+    </p>
+  </div>
+</section>
+
+<section class="cart-page">
+  <div class="wrap cart-page__layout">
+    <div class="cart-page__items">
+      <ul class="cart-items">
+        <% order.items.forEach(it => { %>
+          <li class="cart-line">
+            <div class="cart-line__media">
+              <img src="<%= it.image %>" alt="<%= it.name %>" width="96" height="96">
+            </div>
+            <div class="cart-line__body">
+              <div class="cart-line__head">
+                <div>
+                  <h3 class="cart-line__name"><%= it.name %></h3>
+                  <p class="cart-line__meta"><%= it.color %> &middot; Size <%= it.size %> &middot; Qty <%= it.qty %></p>
+                </div>
+                <p class="cart-line__price">$<%= (it.price * it.qty).toFixed(2) %></p>
+              </div>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+
+    <aside class="cart-page__summary" aria-label="Order summary">
+      <div class="summary">
+        <h2 class="summary__title">Receipt</h2>
+        <dl class="summary__rows">
+          <div><dt>Subtotal</dt><dd>$<%= order.subtotal.toFixed(2) %></dd></div>
+          <div class="summary__total"><dt>Paid</dt><dd>$<%= order.subtotal.toFixed(2) %></dd></div>
+        </dl>
+        <a href="/shop" class="btn btn--primary btn--block">Keep shopping</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

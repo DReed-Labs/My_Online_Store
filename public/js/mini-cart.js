@@ -1,13 +1,12 @@
-/* mini-cart.js — slide-in cart drawer. Available on every page.
+/* mini-cart.js — slide-in cart drawer, hydrated from JRsCart cache.
  *
- * Progressive enhancement: with JS, clicking the nav Cart link opens the
- * drawer. Without JS, the link just navigates to /cart as normal.
+ * Re-renders when `cart:change` fires (so it stays accurate as items are
+ * added/removed elsewhere on the page or in another tab).
  */
 (function () {
   const drawer = document.getElementById('mini-cart');
   if (!drawer) return;
 
-  const panel = drawer.querySelector('.mini-cart__panel');
   const itemsEl = document.getElementById('mini-cart-items');
   const emptyEl = document.getElementById('mini-cart-empty');
   const subtotalEl = drawer.querySelector('[data-mini-cart-subtotal]');
@@ -25,10 +24,9 @@
   }
 
   function lineHTML(line) {
-    const key = window.JRsCart.lineKey(line);
-    const href = `/product/${encodeURIComponent(line.id)}`;
+    const href = `/product/${encodeURIComponent(line.productId)}`;
     return `
-      <li class="mini-cart-line" data-key="${escapeHtml(key)}">
+      <li class="mini-cart-line" data-id="${line.id}">
         <a class="mini-cart-line__media" href="${href}">
           <img src="${escapeHtml(line.image)}" alt="" width="64" height="64" loading="lazy">
         </a>
@@ -49,13 +47,13 @@
   }
 
   function render() {
-    const items = window.JRsCart.read();
+    const { items, count, subtotal } = window.JRsCart.state;
     itemsEl.innerHTML = items.map(lineHTML).join('');
     const isEmpty = items.length === 0;
     emptyEl.toggleAttribute('hidden', !isEmpty);
     itemsEl.toggleAttribute('hidden', isEmpty);
-    if (countEl) countEl.textContent = window.JRsCart.count(items);
-    if (subtotalEl) subtotalEl.textContent = fmt(window.JRsCart.subtotal(items));
+    if (countEl) countEl.textContent = count;
+    if (subtotalEl) subtotalEl.textContent = fmt(subtotal);
     if (checkoutBtn) checkoutBtn.disabled = isEmpty;
   }
 
@@ -67,8 +65,9 @@
     render();
     drawer.setAttribute('aria-hidden', 'false');
     document.body.classList.add('mini-cart-open');
-    // Defer focus so the transition starts before focus jumps.
     setTimeout(() => closeBtn?.focus(), 50);
+    // Sync from server in the background in case another tab changed things.
+    window.JRsCart.refresh().catch(() => {});
   }
 
   function close() {
@@ -78,35 +77,55 @@
     if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
   }
 
-  // Close triggers: backdrop, close button, any [data-mini-cart-close].
   drawer.addEventListener('click', (e) => {
     if (e.target.closest('[data-mini-cart-close]')) close();
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen()) close(); });
 
-  // Line controls.
-  itemsEl.addEventListener('click', (e) => {
+  itemsEl.addEventListener('click', async (e) => {
     const btn = e.target.closest('[data-act]');
     if (!btn) return;
     const li = e.target.closest('.mini-cart-line');
     if (!li) return;
-    const key = li.dataset.key;
-    const line = window.JRsCart.read().find((l) => window.JRsCart.lineKey(l) === key);
+    const id = Number(li.dataset.id);
+    const line = window.JRsCart.state.items.find((l) => l.id === id);
     if (!line) return;
 
-    const act = btn.dataset.act;
-    if (act === 'inc') window.JRsCart.updateQty(key, line.qty + 1);
-    else if (act === 'dec') {
-      if (line.qty <= 1) window.JRsCart.remove(key);
-      else window.JRsCart.updateQty(key, line.qty - 1);
+    btn.disabled = true;
+    try {
+      const act = btn.dataset.act;
+      if (act === 'inc') await window.JRsCart.updateQty(id, line.qty + 1);
+      else if (act === 'dec') await window.JRsCart.updateQty(id, line.qty - 1);
+      else if (act === 'remove') await window.JRsCart.remove(id);
+    } catch (err) {
+      console.warn(err);
+    } finally {
+      btn.disabled = false;
     }
-    else if (act === 'remove') window.JRsCart.remove(key);
   });
 
-  // Cart line items are re-rendered when state changes (including from other tabs).
+  // Wire the drawer's checkout button.
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', async () => {
+      checkoutBtn.disabled = true;
+      checkoutBtn.textContent = 'Starting…';
+      try {
+        const res = await fetch('/api/checkout', { method: 'POST', credentials: 'same-origin' });
+        const data = await res.json();
+        if (!res.ok || !data.checkoutUrl) throw new Error(data.error || 'Checkout failed');
+        window.location.href = data.checkoutUrl;
+      } catch (err) {
+        alert(err.message);
+        checkoutBtn.disabled = false;
+        checkoutBtn.textContent = 'Checkout';
+      }
+    });
+    checkoutBtn.textContent = 'Checkout';
+  }
+
   document.addEventListener('cart:change', () => { if (isOpen()) render(); });
 
-  // Intercept nav Cart link → open drawer. Don't intercept if we're already on /cart.
+  // Intercept nav Cart link → open drawer (unless we're already on /cart).
   document.querySelectorAll('.nav-cart').forEach((link) => {
     link.addEventListener('click', (e) => {
       if (window.location.pathname === '/cart') return;
@@ -115,6 +134,5 @@
     });
   });
 
-  // Public API in case other scripts want to open the drawer (e.g. after add-to-cart).
   window.JRsMiniCart = { open, close, isOpen };
 })();

@@ -1,0 +1,19 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="page-head">
+  <div class="wrap text-center">
+    <p class="hero__eyebrow">Cancelled</p>
+    <h1 class="page-head__title">No worries &mdash; nothing was charged.</h1>
+    <p class="page-head__lede">
+      Order <code><%= order.id %></code> was cancelled. Your cart wasn't cleared, so
+      pick up where you left off whenever you're ready.
+    </p>
+    <p style="margin-top: var(--space-6);">
+      <a class="btn btn--primary" href="/cart">Back to cart</a>
+      <a class="btn btn--ghost" href="/shop">Keep browsing</a>
+    </p>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

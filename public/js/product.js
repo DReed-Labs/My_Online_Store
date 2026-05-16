@@ -4,6 +4,10 @@
   if (!form) return;
 
   const qtyInput = form.querySelector('#qty');
+  const submit = form.querySelector('button[type="submit"]');
+  const msg = document.getElementById('add-msg');
+  let msgTimer;
+
   form.querySelectorAll('[data-qty-step]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const step = Number(btn.dataset.qtyStep);
@@ -12,10 +16,7 @@
     });
   });
 
-  const msg = document.getElementById('add-msg');
-  let msgTimer;
-
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = new FormData(form);
     const color = data.get('color');
@@ -24,23 +25,31 @@
       msg.textContent = 'Please choose a color and size.';
       return;
     }
-    const item = {
-      id: form.dataset.productId,
-      name: form.dataset.productName,
-      price: Number(form.dataset.productPrice),
-      image: form.dataset.productImage,
-      color,
-      size,
-      qty: Math.max(1, Number(data.get('qty') || 1)),
-    };
-    window.JRsCart.add(item);
 
-    msg.textContent = `Added ${item.qty} × ${item.name} (${size}, ${color}) to cart.`;
-    msg.style.color = 'var(--color-ink)';
-    clearTimeout(msgTimer);
-    msgTimer = setTimeout(() => { msg.textContent = ''; }, 4000);
+    submit.disabled = true;
+    const originalLabel = submit.textContent;
+    submit.textContent = 'Adding…';
 
-    // Open the mini-cart so the user sees what they just added.
-    if (window.JRsMiniCart) window.JRsMiniCart.open();
+    try {
+      await window.JRsCart.add({
+        productId: form.dataset.productId,
+        color,
+        size,
+        qty: Math.max(1, Number(data.get('qty') || 1)),
+      });
+
+      msg.textContent = `Added ${data.get('qty')} × ${form.dataset.productName} (${size}, ${color}) to cart.`;
+      msg.style.color = 'var(--color-ink)';
+
+      if (window.JRsMiniCart) window.JRsMiniCart.open();
+    } catch (err) {
+      msg.textContent = err.message || 'Could not add to cart.';
+      msg.style.color = 'var(--color-accent)';
+    } finally {
+      submit.disabled = false;
+      submit.textContent = originalLabel;
+      clearTimeout(msgTimer);
+      msgTimer = setTimeout(() => { msg.textContent = ''; }, 4000);
+    }
   });
 })();

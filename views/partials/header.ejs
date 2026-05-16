@@ -12,7 +12,7 @@
       <a href="/" class="<%= currentPath === '/' ? 'is-active' : '' %>">Home</a>
       <a href="/shop" class="<%= currentPath.startsWith('/shop') || currentPath.startsWith('/product') ? 'is-active' : '' %>">Shop</a>
       <a href="/cart" class="nav-cart <%= currentPath === '/cart' ? 'is-active' : '' %>">
-        Cart <span class="cart-badge" data-cart-count aria-label="items in cart">0</span>
+        Cart <span class="cart-badge" data-cart-count aria-label="items in cart" <%= cartCount === 0 ? 'hidden' : '' %>><%= cartCount %></span>
       </a>
     </nav>
   </div>
