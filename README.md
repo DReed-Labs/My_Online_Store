@@ -10,16 +10,6 @@ Server-rendered streetwear t-shirt store. Mobile-first, vanilla CSS, Express + E
 - **Data:** Static `data/products.json`
 - **Cart:** `localStorage`
 
-## Run
-
-```bash
-npm install
-npm run dev     # auto-reload on changes
-# or
-npm start
-```
-
-Then open <http://localhost:3000>.
 
 ## Project layout
 
@@ -38,7 +28,7 @@ Then open <http://localhost:3000>.
 ├── public/
 │   ├── css/                  # base, components, pages
 │   ├── js/                   # cart, shop, product
-│   ├── images/tees/          # SVG placeholders (swap for real photos)
+│   ├── images/tees/          # Using real photos, (Will be dynamic at completion)
 │   ├── robots.txt
 │   └── sitemap.xml
 └── README.md
@@ -57,7 +47,7 @@ Then open <http://localhost:3000>.
 - `robots.txt` + `sitemap.xml` served from `/public`
 
 ## Swapping placeholder images
-Drop real photos into `public/images/tees/` and update the `image` field
+Dropped real photos into `public/images/tees/` and update the `image` field
 on each product in `data/products.json`.
 
 ## Next steps (backend)
